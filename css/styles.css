@@ -277,10 +277,12 @@ img {
 */
 
 .thumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 264px;
   height: 112px;
   margin-bottom: 8px;
-  padding: 24px 0px;
   border-radius: 4px;
   background: #f4f4fd;
 }
@@ -424,9 +426,6 @@ img {
 .thumb-customers {
   width: 168px;
   height: 88px;
-  padding: 16px 0px;
-  border: 1px solid var(--color-icon-customers);
-  border-radius: 4px;
 }
 
 .thumb-customers:hover,
@@ -439,6 +438,8 @@ img {
   align-items: center;
   width: 100%;
   height: 100%;
+  border: 1px solid var(--color-icon-customers);
+  border-radius: 4px;
   fill: var(--color-icon-customers);
 }
 
@@ -554,7 +555,6 @@ img {
 .filter-btn:hover,
 .filter-btn:focus,
 .filter-btn:active {
-  border: transparent;
   background-color: var(--color-focus-hover);
   color: var(--color-text-hero);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08),
