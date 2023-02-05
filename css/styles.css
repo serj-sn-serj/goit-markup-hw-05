@@ -19,9 +19,15 @@
   /* customers */
   --color-icon-customers: #8e8f99;
 
+  /* modal form */
+  --color-bg-modal: #fcfcfd;
+
   /* others */
   --indent: 24px;
   --items: 4;
+
+  /* time function */
+  --time-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Body */
@@ -58,6 +64,7 @@ img {
 .link {
   color: inherit;
   text-decoration: none;
+  transition: color 250ms var(--time-function);
 }
 
 .btn {
@@ -65,6 +72,7 @@ img {
   padding: 0;
   border: none;
   cursor: pointer;
+  transition: background-color 250ms var(--time-function);
 }
 
 .carrent {
@@ -157,9 +165,21 @@ img {
 }
 
 .nav-studio {
+  position: relative;
   padding-top: var(--indent);
   padding-bottom: var(--indent);
   font-weight: 500;
+}
+
+.nav-studio.carrent::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-focus-hover);
 }
 
 .nav-studio:hover,
@@ -168,9 +188,21 @@ img {
 }
 
 .nav-portfolio {
+  position: relative;
   padding-top: var(--indent);
   padding-bottom: var(--indent);
   font-weight: 500;
+}
+
+.nav-portfolio.carrent::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-focus-hover);
 }
 
 .nav-portfolio:hover,
@@ -384,6 +416,7 @@ img {
   gap: var(--indent);
   justify-content: center;
 }
+
 .social-link {
   display: flex;
   justify-content: center;
@@ -393,6 +426,8 @@ img {
   border-radius: 50%;
   background-color: var(--color-logo-primary);
   fill: var(--color-logo-footer);
+
+  transition: background-color 250ms var(--time-function);
 }
 
 .social-link:hover,
@@ -408,6 +443,7 @@ img {
 .customers {
   padding-top: 130px;
 }
+
 .customers-title {
   margin-bottom: 72px;
   font-weight: 700;
@@ -432,6 +468,7 @@ img {
 .thumb-customers:focus {
   border: 1px solid var(--color-focus-hover);
 }
+
 .customers-icon {
   display: flex;
   justify-content: center;
@@ -440,7 +477,10 @@ img {
   height: 100%;
   border: 1px solid var(--color-icon-customers);
   border-radius: 4px;
+
   fill: var(--color-icon-customers);
+
+  transition: fill 250ms var(--time-function);
 }
 
 .customers-icon:hover,
@@ -482,6 +522,7 @@ img {
 .footer-logo:hover,
 .footer-logo:focus {
   color: var(--color-focus-hover);
+  transition: color 250ms var(--time-function);
 }
 
 .footer-text {
@@ -495,17 +536,20 @@ img {
 .social-media {
   margin-left: 120px;
 }
+
 .social-text {
   margin-bottom: 16px;
   color: var(--color-text-hero);
   font-weight: 500;
   font-size: 16px;
 }
+
 .social-list-footer {
   display: flex;
   gap: 16px;
   justify-content: center;
 }
+
 .social-link-footer {
   display: flex;
   justify-content: center;
@@ -515,11 +559,15 @@ img {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
   fill: var(--color-btn-filter);
+
+  transition: background-color 250ms var(--time-function);
 }
+
 .social-link-footer:hover,
 .social-link-footer:focus {
   background: var(--color-fhi-footer);
 }
+
 /**
   |============================
   |  Portfolio page 2
@@ -578,12 +626,55 @@ img {
 
 .project-link {
   display: block;
+  transition: box-shadow 250ms var(--time-function);
 }
 
 .project-link:hover,
 .project-link:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16),
     0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.project-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-thumb::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 300px;
+  background-color: var(--color-focus-hover);
+  opacity: 0;
+
+  transition: opacity 250ms var(--time-function), transform 250ms var(--time-function);
+
+  transform: translateY(300px);
+}
+
+.project-thumb-descr {
+  position: absolute;
+  right: 32px;
+  bottom: 164px;
+  left: 32px;
+  margin: 0;
+  padding: 0;
+  color: var(--color-btn-filter);
+
+  opacity: 0;
+
+  transition: opacity 250ms var(--time-function), transform 250ms var(--time-function);
+
+  transform: translateY(300px);
+}
+
+.project-link:hover .project-thumb::before,
+.project-link:hover .project-thumb-descr,
+.project-link:focus .project-thumb::before,
+.project-link:focus .project-thumb-descr {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .set {
@@ -599,4 +690,74 @@ img {
 
 .project-text {
   color: var(--color-text-secondary);
+}
+
+/**
+  |============================
+  | modal form
+  |============================
+*/
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(46, 47, 66, 0.4);
+  opacity: 1;
+  transition: opacity 250ms var(--time-function);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+
+  left: 50%;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 408px;
+
+  height: 576px;
+  border-radius: 4px;
+
+  background-color: var(--color-bg-modal);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+
+  transition: transform 250ms var(--time-function);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 24px;
+
+  margin-right: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+
+  background: var(--color-text-footer);
+  cursor: pointer;
+
+  transition: transform 250ms var(--time-function);
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  background: var(--color-focus-hover);
+  fill: var(--color-text-hero);
 }
